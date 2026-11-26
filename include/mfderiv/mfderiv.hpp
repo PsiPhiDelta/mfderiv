@@ -6,3 +6,4 @@
 #include "core.hpp"
 #include "gap.hpp"
 #include "derivatives.hpp"
+#include "closed.hpp"
