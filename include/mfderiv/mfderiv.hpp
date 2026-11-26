@@ -4,3 +4,5 @@
 // truncations), with forward-mode automatic differentiation.
 
 #include "core.hpp"
+#include "gap.hpp"
+#include "derivatives.hpp"
