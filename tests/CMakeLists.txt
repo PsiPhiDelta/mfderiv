@@ -1,0 +1,8 @@
+file(GLOB MFDERIV_TESTS CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp)
+foreach(src ${MFDERIV_TESTS})
+    get_filename_component(name ${src} NAME_WE)
+    add_executable(${name} ${src})
+    target_link_libraries(${name} PRIVATE mfderiv::mfderiv)
+    target_compile_options(${name} PRIVATE $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra>)
+    add_test(NAME ${name} COMMAND ${name})
+endforeach()
