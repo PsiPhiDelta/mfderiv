@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite it as below."
+authors:
+  - family-names: Gholami
+    given-names: Hosein
+    orcid: https://orcid.org/0009-0003-3194-926X
+title: "mfderiv: pressure derivatives of stationary effective potentials with automatic differentiation"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/PsiPhiDelta/mfderiv"
+references:
+  - type: software
+    title: "Mean-field symbolic pressure expansion coefficients"
+    authors:
+      - family-names: Gholami
+        given-names: Hosein
+    year: 2025
+    url: "https://github.com/PsiPhiDelta/PressureExpansion"
