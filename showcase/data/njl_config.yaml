@@ -1,0 +1,144 @@
+conditions:
+  beta_eq: false
+  charge_neutrality: false
+  color_neutrality: false
+  include_leptons: false
+files:
+  outdir: chiral_sym_T0
+  outfile: chiral_sym_T0.csv
+integration:
+  cubaturemaxeval: 100000
+  reqAbsError: 1.0e-07
+iteration:
+  T_iteration_end: 0.0
+  T_iteration_start: 0.0
+  T_iteration_step: 1.0
+  mu_Q_iteration_end: 0.0
+  mu_Q_iteration_start: 0.0
+  mu_Q_iteration_step: 1.0
+  mu_Strangeness_iteration_end: 0.0
+  mu_Strangeness_iteration_start: 0.0
+  mu_Strangeness_iteration_step: 1.0
+  mu_iteration_end: 800.0
+  mu_iteration_start: 300.0
+  mu_iteration_step: 2.0
+  number_of_cpus: 2
+model:
+  G_times_Lambda_squared: 1.835
+  K_times_Lambda_to_the_fifth: 12.36
+  Lambda_RG: 20.0
+  RG_consistency: true
+  RG_scheme: minimal
+  Real_Lambda: 602.3
+  eta_D: 1.0
+  eta_V: 0.7
+  m_d: 5.5
+  m_s: 140.7
+  m_u: 5.5
+phase_specific:
+  CFL:
+    Delta_1_start: 200.0
+    Delta_2_start: 200.0
+    Delta_3_start: 200.0
+    M_d_start: 10.0
+    M_s_start: 250.0
+    M_u_start: 10.0
+    mu_3_start: 0.0
+    mu_8_start: -20.0
+    mu_Q_start: 0.0
+    mu_tilde_V_start: 800.0
+  NQM:
+    Delta_1_start: 0.0
+    Delta_2_start: 0.0
+    Delta_3_start: 0.0
+    M_d_start: 50.0
+    M_s_start: 300.0
+    M_u_start: 50.0
+    mu_3_start: 0.0
+    mu_8_start: 0.0
+    mu_Q_start: 0.0
+    mu_tilde_V_start: 0.0
+  chiral:
+    M_u_start: 367.6
+    M_d_start: 367.6
+    M_s_start: 549.5
+    Delta_1_start: 0.0
+    Delta_2_start: 0.0
+    Delta_3_start: 0.0
+    mu_Q_start: 0.0
+    mu_3_start: 0.0
+    mu_8_start: 0.0
+    mu_tilde_V_start: 300.0
+  custom_guesses: false
+  dSC:
+    Delta_1_start: 20.0
+    Delta_2_start: 0.0
+    Delta_3_start: 70.0
+    M_d_start: 20.0
+    M_s_start: 350.0
+    M_u_start: 20.0
+    mu_3_start: 0.0
+    mu_8_start: -5.0
+    mu_Q_start: -100.0
+    mu_tilde_V_start: 485.0
+  phase: chiral
+  sSC:
+    Delta_1_start: 50.0
+    Delta_2_start: 50.0
+    Delta_3_start: 0.0
+    M_d_start: 10.0
+    M_s_start: 250.0
+    M_u_start: 10.0
+    mu_3_start: 0.0
+    mu_8_start: -5.0
+    mu_Q_start: -100.0
+    mu_tilde_V_start: 485.0
+  twoSC:
+    Delta_1_start: 0.0
+    Delta_2_start: 0.0
+    Delta_3_start: 200.0
+    M_d_start: 50.0
+    M_s_start: 300.0
+    M_u_start: 50.0
+    mu_3_start: 0.0
+    mu_8_start: -60.0
+    mu_Q_start: -200.0
+    mu_tilde_V_start: 370.0
+  twoSC_ds:
+    Delta_1_start: 200.0
+    Delta_2_start: 0.0
+    Delta_3_start: 0.0
+    M_d_start: 50.0
+    M_s_start: 300.0
+    M_u_start: 50.0
+    mu_3_start: 0.0
+    mu_8_start: -60.0
+    mu_Q_start: -200.0
+    mu_tilde_V_start: 370.0
+  twoSC_us:
+    Delta_1_start: 0.0
+    Delta_2_start: 0.0
+    Delta_3_start: 200.0
+    M_d_start: 50.0
+    M_s_start: 300.0
+    M_u_start: 50.0
+    mu_3_start: 0.0
+    mu_8_start: -60.0
+    mu_Q_start: -200.0
+    mu_tilde_V_start: 370.0
+  uSC:
+    Delta_1_start: 0.0
+    Delta_2_start: 20.0
+    Delta_3_start: 70.0
+    M_d_start: 10.0
+    M_s_start: 250.0
+    M_u_start: 10.0
+    mu_3_start: 0.0
+    mu_8_start: -5.0
+    mu_Q_start: -100.0
+    mu_tilde_V_start: 485.0
+rootfinding:
+  inherit_starting_values: true
+  rootf_alg: 0
+  rootf_epsabs: 1.0e-07
+  rootf_maxiter: 1000

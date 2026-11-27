@@ -101,6 +101,15 @@ At `T = 0` use `x = (mu)` (or the `mu` block of the results), where `c_s^2 = n /
 - The internal Hessian must be invertible. It is singular at spinodals, critical points and
   second-order transitions, where the derivatives of the pressure diverge or jump.
 
+## Showcase with MUSES modules
+
+[`showcase/showcase.ipynb`](showcase/showcase.ipynb) takes the T = 0 output of two modules of the MUSES framework,
+the NJL module (quark matter) and CMF++ (nuclear matter), writes their effective potentials in a few dozen lines
+each ([`njl.cpp`](showcase/njl.cpp), [`cmf.cpp`](showcase/cmf.cpp)) and recomputes `P`, `n` and `c_s^2` from the
+solutions of the modules. It reproduces both modules to their numerical accuracy and compares `c_s^2` with finite
+differences of their tables. The module tables and configurations are in `showcase/data`, so the notebook needs
+only CMake, a C++17 compiler and Python with numpy, pandas and matplotlib.
+
 ## Building the tests
 
 ```sh
