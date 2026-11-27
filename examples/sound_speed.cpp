@@ -36,9 +36,9 @@ int main() {
             // at T = 0 the entropy vanishes and the T direction drops out of c_s^2
             const mfd::VectorXd y = T > 0 ? x : x.tail(1);
             const mfd::VectorXd sigma = T > 0 ? r.dP : r.dP.tail(1);
-            const mfd::MatrixXd chi2 = T > 0 ? r.d2P : r.d2P.bottomRightCorner(1, 1);
+            const mfd::MatrixXd susc = T > 0 ? r.d2P : r.d2P.bottomRightCorner(1, 1);
             std::printf("%8.1f %12.5f %14.4f %14.4f %10.6f\n", mu, r.dP(1) / hbc3, r.P / hbc3,
-                        mfd::energy_density(x, r.P, r.dP) / hbc3, mfd::sound_speed2(y, sigma, chi2));
+                        mfd::energy_density(x, r.P, r.dP) / hbc3, mfd::sound_speed2(y, sigma, susc));
         }
     }
 }

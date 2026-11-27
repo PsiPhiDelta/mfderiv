@@ -58,7 +58,10 @@ NewtonResult newton(const Model& phi, const VectorXd& x, const VectorXd& chi0, c
         VectorXd trial = chi - step, gt;
         MatrixXd Ht;
         equations(trial, gt, Ht);
-        for (int k = 0; k < opt.max_halvings && !(gt.allFinite() && gt.norm() <= g.norm()); ++k) {
+        // At a solution, for instance when derivatives restart from a converged chi, rounding noise can let the
+        // norm grow. A step below the tolerance is taken in full.
+        const bool converging = step.norm() <= opt.tol * (1.0 + chi.norm());
+        for (int k = 0; !converging && k < opt.max_halvings && !(gt.allFinite() && gt.norm() <= g.norm()); ++k) {
             t *= 0.5;
             trial = chi - t * step;
             equations(trial, gt, Ht);

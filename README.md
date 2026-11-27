@@ -80,9 +80,9 @@ At `T = 0` use `x = (mu)` (or the `mu` block of the results), where `c_s^2 = n /
 | `pressure(phi, x, chi0)` | `P(x) = -Phi(x, chibar(x))`, differentiable in `x` |
 | `derivatives(phi, x, chi0, order)` | `P`, `dP`, `d2P`, `d3P` through the gap solver |
 | `derivative<K>(phi, x, chi0, idx)` | a single mixed derivative of order `K` |
-| `closed_form_derivatives(phi, x, chibar, order)` | the same up to third order from closed formulas, with `S = dchibar/dx` and the naive `-Phi_xx` |
+| `closed_form_derivatives(phi, x, chibar, order, tol)` | the same up to third order from closed formulas, with `S = dchibar/dx` and the naive `-Phi_xx`. Throws if `chibar` does not solve the gap equations (Newton step above `tol`) |
 | `sound_speed2`, `adiabatic_index`, `heat_capacity_V`, `hydro_derivatives` | response functions from `dP` and `d2P` |
-| `constrain(chi, fixed)` | susceptibilities after fixing densities to zero (neutrality) |
+| `constrain(susc, fixed)` | susceptibilities after fixing densities to zero (neutrality) |
 | `process_derivative(gradA, gradB, gradC)` | `dA/dB` along any process that keeps `C_1, ..., C_{d-1}` fixed |
 
 ## Notes
@@ -94,6 +94,10 @@ At `T = 0` use `x = (mu)` (or the `mu` block of the results), where `c_s^2 = n /
 - Momentum integrals with Fermi surfaces should be split at the Fermi momenta, which move with `x` and
   `chi`. The quadrature is then smooth in these variables, and the derivatives of the discretized
   integral include the boundary terms.
+- Cost. Each derivative needs the Hessian of `Phi` in all `d + N` control and internal variables, which forward
+  mode builds from about `(d + N)(d + N + 1)/2` evaluations of `Phi` with nested dual numbers. This is cheap for a
+  few to a few tens of internal variables. With hundreds, as in a Hartree-Fock functional, expect the run time to
+  grow with the square of their number.
 - The internal Hessian must be invertible. It is singular at spinodals, critical points and
   second-order transitions, where the derivatives of the pressure diverge or jump.
 

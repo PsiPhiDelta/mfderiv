@@ -67,9 +67,9 @@ int main() {
 
     // Schur complement for a fixed density
     {
-        mfd::MatrixXd chi(3, 3);
-        chi << 4, 1, 0.5, 1, 3, 0.2, 0.5, 0.2, 2;
-        const mfd::MatrixXd c = mfd::constrain(chi, {1});
+        mfd::MatrixXd susc(3, 3);
+        susc << 4, 1, 0.5, 1, 3, 0.2, 0.5, 0.2, 2;
+        const mfd::MatrixXd c = mfd::constrain(susc, {1});
         check::close(c(0, 0), 4 - 1 * 1 / 3.0, 1e-15, "constrain 00");
         check::close(c(0, 1), 0.5 - 1 * 0.2 / 3.0, 1e-15, "constrain 02");
         check::close(c(1, 1), 2 - 0.2 * 0.2 / 3.0, 1e-15, "constrain 22");

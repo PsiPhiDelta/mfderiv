@@ -2,11 +2,13 @@
 // Pressure derivatives from closed formulas at a solution chibar of the gap equations (the
 // envelope theorem, the Schur complement and the tangent contraction), up to third order. They need
 // only partial derivatives of Phi at one point and the linear response S = dchibar/dx. For higher
-// orders use derivative<K>() of derivatives.hpp.
+// orders use derivative<K>() of derivatives.hpp. The formulas hold only at a solution, so chibar is
+// checked: the Newton step from it must be below tol relative to (1 + |chibar|).
 
 #include <array>
 #include <map>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 #include "core.hpp"
@@ -35,7 +37,7 @@ std::array<double, 4> directional3(const F& f, const VectorXd& z, const VectorXd
 
 template <class Model>
 PressureDerivatives closed_form_derivatives(const Model& phi, const VectorXd& x, const VectorXd& chibar,
-                                            int order = 2) {
+                                            int order = 2, double tol = 1e-8) {
     if (order < 1 || order > 3)
         throw std::invalid_argument("mfd::closed_form_derivatives: order must be 1, 2 or 3");
     const Index d = x.size(), N = chibar.size();
@@ -45,6 +47,12 @@ PressureDerivatives closed_form_derivatives(const Model& phi, const VectorXd& x,
     VectorXd g;
     MatrixXd H;
     detail::hessian(f, z, 0, v, g, H);
+    if (N) {
+        const double step = H.bottomRightCorner(N, N).partialPivLu().solve(g.tail(N)).norm();
+        if (!(step <= tol * (1.0 + chibar.norm())))
+            throw std::invalid_argument("mfd::closed_form_derivatives: chibar does not solve the gap equations "
+                                        "(Newton step " + std::to_string(step) + ")");
+    }
 
     PressureDerivatives r;
     r.P = -v;
